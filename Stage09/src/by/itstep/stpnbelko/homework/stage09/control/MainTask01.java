@@ -4,9 +4,6 @@ import by.itstep.stpnbelko.homework.stage09.view.Printer;
 
 import static by.itstep.stpnbelko.homework.stage09.logic.DiceClass.*;
 
-
-import java.util.Scanner;
-
 public class MainTask01 {
 // Напишите программу, которая бы эмулировала игру
 //«Dice» (игра в кости). Суть игры заключается в броске
@@ -15,11 +12,7 @@ public class MainTask01 {
 
     public static void main(String[] args) {
 
-        int randomNumber1 = countRandomNumber();
-        int randomNumber2 = countRandomNumber();
-
-        String msg = String.format("Number 1 = %1$d\nNumber 2 = %2$d\n%1$d + %2$d = %3$d",
-                randomNumber1, randomNumber2, randomNumber1 + randomNumber2);
+        String msg = String.format("Your score is %d", countSumTwoRandomNumbers());
 
         Printer.printMsg(msg);
     }

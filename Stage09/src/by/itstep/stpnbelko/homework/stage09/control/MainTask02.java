@@ -6,14 +6,14 @@ import by.itstep.stpnbelko.homework.stage09.view.Printer;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static by.itstep.stpnbelko.homework.stage09.logic.PokerClass.*;
+import static by.itstep.stpnbelko.homework.stage09.logic.Game.*;
 
 //Необходимо написать программу «Simple Poker» (разновидность TEXAS
 //HOLD’EM POKER), которая бы генерировала две карты для каждого игрока 
 //(количество игроков выбирается самостоятельно, но не больше соответствующего лимита игры) 
 //и пять карт на стол. Карты не должны дублироваться.
 public class MainTask02 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RuntimeException {
         Scanner scanner = new Scanner(System.in);
         StringBuilder msg = new StringBuilder();
 
