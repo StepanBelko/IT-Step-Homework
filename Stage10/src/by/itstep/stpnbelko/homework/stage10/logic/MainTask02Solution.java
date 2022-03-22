@@ -1,20 +1,6 @@
-import java.util.Scanner;
+package by.itstep.stpnbelko.homework.stage10.logic;
 
-//Разработайте программу, которая проверяет, что все цифры заданного
-//натурального числа различны (или одинаковы).
-public class MainTask02 {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter number ");
-        int number = scanner.nextInt();
-        System.out.println("All numbers the same = " + MainTask02Solution.checkSameNumbers(number));
-        System.out.println("All numbers are different(Array) = " + MainTask02Solution.checkDifferentNumbers(number));
-        System.out.println("All numbers are different(Cycle) = " + MainTask02Solution.checkDiffNumCycle(number));
-    }
-}
-
-class MainTask02Solution {
+public class MainTask02Solution {
 
     public static boolean checkSameNumbers(int number) {
         number = number > 0 ? number : -number;

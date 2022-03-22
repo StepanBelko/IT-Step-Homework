@@ -1,4 +1,10 @@
+package by.itstep.stpnbelko.homework.stage10.control;
+
+import by.itstep.stpnbelko.homework.stage10.view.Printer;
+
 import java.util.Scanner;
+
+import static by.itstep.stpnbelko.homework.stage10.logic.MainTask03Solution.*;
 
 public class MainTask03 {
     //    Разработайте программу, которая проверяет, что цифры заданного числао бразуют
@@ -12,37 +18,15 @@ public class MainTask03 {
         System.out.println("Enter number");
         int number = scanner.nextInt();
 
-        System.out.println(MainTask03Solution.isAscendingSequence(number));
-        System.out.println(MainTask03Solution.isDescendingSequence(number));
+        String msg = "Ascending sequence? - " +
+                (isAscendingSequence(number) ? "Yes" : "No");
+        Printer.printMsg(msg);
+
+        msg = "Descending sequence? - " +
+                (isDescendingSequence(number) ? "Yes" : "No");
+        Printer.printMsg(msg);
 
     }
 
 }
 
-class MainTask03Solution {
-    public static boolean isAscendingSequence(int number) {
-        if (number == 0)
-            return false;
-        while (number / 10 != 0) {
-            if (number % 10 > (number / 10) % 10) {
-                number /= 10;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean isDescendingSequence(int number) {
-        if (number == 0)
-            return false;
-        while (number / 10 != 0) {
-            if (number % 10 < (number / 10) % 10) {
-                number /= 10;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-}

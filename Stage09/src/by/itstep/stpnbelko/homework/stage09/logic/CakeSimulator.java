@@ -1,3 +1,5 @@
+package by.itstep.stpnbelko.homework.stage09.logic;
+
 import java.util.Random;
 
 public class CakeSimulator {
@@ -15,7 +17,6 @@ public class CakeSimulator {
         Random random = new Random();
         int number = random.nextInt(NUMBERS_OF_SIMULATION);
         String surprise;
-        System.out.println(number);
 
         surprise = switch (number) {
             case 1 -> FIRST_SURPRISE;

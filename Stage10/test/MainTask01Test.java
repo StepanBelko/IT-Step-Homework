@@ -1,3 +1,4 @@
+import by.itstep.stpnbelko.homework.stage10.logic.MainTask01Solution;
 import org.junit.Assert;
 import org.junit.Test;
 
