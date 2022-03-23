@@ -6,9 +6,22 @@ import static by.itstep.stpnbelko.homework.stage09.logic.AdditionalTaskSolution.
 
 public class AdditionalTaskSolutionTest {
     @Test
-    public void test29February() {
-        String expected = String.format("Current date is %02d.%02d.%d\n", 29, 2, 2000) +
-                String.format("    New date is %02d.%02d.%d\n", 1, 3, 2000);
-        assertEquals(expected, findNextDayCycle(2000,2,29));
+    public void testCycle29February() {
+        assertEquals("1.3.2000", findNextDayCycle(2000,2,29));
+    }
+
+    @Test
+    public void testCycleNewYear() {
+        assertEquals("1.1.2001", findNextDayCycle(2000,12,31));
+    }
+
+    @Test
+    public void testHashMap29February() {
+        assertEquals("1.3.2000", findNextDayCycle(2000,2,29));
+    }
+
+    @Test
+    public void testHashMapNewYear() {
+        assertEquals("1.1.2001", findNextDayCycle(2000,12,31));
     }
 }

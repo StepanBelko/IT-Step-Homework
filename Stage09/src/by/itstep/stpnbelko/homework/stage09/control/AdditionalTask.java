@@ -29,17 +29,40 @@ public class AdditionalTask {
 //    с датой и временем (или можно использовать, но как второй вариант реализации).
 
     public static void main(String[] args) {
-
+        //Calendar
         System.out.println("Метод с GregorianCalendar и LocalDateTime");
         String msg = findNextDayGregorianClass(year, month, dayOfMonth);
         Printer.printMsg(msg);
 
+
+        //Hashmap
         System.out.print("\nМетод с HashMap\n");
-        msg = findNextDayHashMap(year, month, dayOfMonth);
+        msg = String.format("Random date is %02d.%02d.%d", dayOfMonth, month, year);
         Printer.printMsg(msg);
 
+        msg = findNextDayHashMap(year, month, dayOfMonth);
+        String[] dateString = msg.split("[.]");
+
+        dayOfMonth = Integer.parseInt(dateString[0]);
+        month = Integer.parseInt(dateString[1]);
+        year = Integer.parseInt(dateString[2]);
+
+        msg = String.format("    New date is %02d.%02d.%d\n", dayOfMonth, month, year);
+        Printer.printMsg(msg);
+
+        //Cycle
         System.out.println("Метод с циклами");
-        msg = findNextDayCycle(year, month, dayOfMonth);
+        msg = String.format("Random date is %02d.%02d.%d", dayOfMonth, month, year);
+        Printer.printMsg(msg);
+
+        msg = findNextDayCycle(year,month,dayOfMonth);
+        dateString = msg.split("[.]");
+
+        dayOfMonth = Integer.parseInt(dateString[0]);
+        month = Integer.parseInt(dateString[1]);
+        year = Integer.parseInt(dateString[2]);
+
+        msg = String.format("    New date is %02d.%02d.%d\n", dayOfMonth, month, year);
         Printer.printMsg(msg);
     }
 

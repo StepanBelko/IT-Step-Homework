@@ -25,8 +25,6 @@ public class AdditionalTaskSolution {
 
     public static String findNextDayHashMap(int year, int month, int dayOfMonth) {
 
-        String msg = String.format("Random date is %02d.%02d.%d\n", dayOfMonth, month, year);
-
         if (month == yearMap.size() && dayOfMonth == yearMap.get(month)) {
             year++;
             month = 1;
@@ -37,15 +35,12 @@ public class AdditionalTaskSolution {
         } else {
             dayOfMonth++;
         }
-        msg += String.format("    New date is %02d.%02d.%d\n", dayOfMonth, month, year);
-        return msg;
+        return dayOfMonth + "." + month + "." + year;
     }
 
     public static String findNextDayCycle(int year, int month, int dayOfMonth) {
 
         int daysInMonth = findDayInMonthCycle(year, month);
-
-        String msg = String.format("Current date is %02d.%02d.%d\n", dayOfMonth, month, year);
 
         if (month == 12 && dayOfMonth == daysInMonth) {
             year++;
@@ -57,12 +52,10 @@ public class AdditionalTaskSolution {
         } else {
             dayOfMonth++;
         }
-        msg += String.format("    New date is %02d.%02d.%d\n", dayOfMonth, month, year);
-        return msg;
+        return dayOfMonth + "." + month + "." + year;
     }
 
     ///Вспомогательные методы:
-
     public static int findDayInMonthCycle(int year, int month) {
         int numDays = 0;
         switch (month) {

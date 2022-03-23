@@ -45,7 +45,7 @@ public class Game {
         }
     }
 
-    // раздаём игрокам
+    // создаём игроков и раздаём им карты
     private static void cardDistribution(int playersCount, Deck deck) {
         for (int i = 1; playersCount > 0; playersCount--, i++) {
             Player player = new Player(i);
