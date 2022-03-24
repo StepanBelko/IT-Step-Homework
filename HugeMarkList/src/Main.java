@@ -25,7 +25,7 @@ public class Main {
 }
 class HugeMarkList {
     static private final int ELEMENTS_IN_CELL = 100_000;
-    static String[] arrayOfMarks = new String[1_000_000]; // массив на 10 000 000 000 оценок
+    static String[] arrayOfMarks = new String[1_000_000]; // массив на 100 000 000 000 оценок
 
     static {
         Random random = new Random();
@@ -33,7 +33,7 @@ class HugeMarkList {
         for (int i = 0; i < ELEMENTS_IN_CELL; i++) {
             stringBuilder.append((char) (random.nextInt(10) + 65));
         }
-        String string = stringBuilder.toString();    // строка на 10_000 рандомных оценок
+        String string = stringBuilder.toString();    // строка на 100_000 рандомных оценок
         Arrays.fill(arrayOfMarks, string); //   заполняем массив нашей строкой
     }
 
