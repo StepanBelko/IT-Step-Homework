@@ -5,8 +5,8 @@ import java.util.List;
 
 public class AdditionalTask02Solution {
     public static List<Integer> findArmstrongNumber(int digitCount) {
-        List <Integer> arrayList = new ArrayList<>();
-        if (digitCount <=0)
+        List<Integer> arrayList = new ArrayList<>();
+        if (digitCount <= 0)
             return arrayList;
         for (int i = (int) Math.pow(10, digitCount - 1); i < Math.pow(10, digitCount); i++) {
             int number = i;
