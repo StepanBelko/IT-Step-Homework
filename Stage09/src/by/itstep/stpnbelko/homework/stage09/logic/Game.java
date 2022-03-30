@@ -1,6 +1,7 @@
 package by.itstep.stpnbelko.homework.stage09.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
@@ -8,12 +9,12 @@ public class Game {
     private final static int CARD_FOR_EACH_PLAYER = 2;
     private final static int CARD_ON_THE_TABLE = 5;
 
-    private final static ArrayList<Player> PlayerList = new ArrayList<>();
+    private final static List<Player> PlayerList = new ArrayList<>();
     private final static String[] cardsOnTheTable = new String[CARD_ON_THE_TABLE];
 
     static Random random = new Random();
 
-    public static ArrayList<Player> getPlayerList() {
+    public static List<Player> getPlayerList() {
         return PlayerList;
     }
 

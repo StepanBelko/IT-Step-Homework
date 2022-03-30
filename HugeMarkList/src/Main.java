@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         // Массив по дефолту заполнен рандомными оценками (A = 10, B = 9, C = 8 и т.д. )
 

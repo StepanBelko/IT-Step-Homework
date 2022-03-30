@@ -1,4 +1,4 @@
-package by.itstep.stpnbelko.homework.stage10.logic;
+package by.itstep.stpnbelko.homework.stage10.data;
 public class Deposit {
     public int monthCount;
     public double depositSize;

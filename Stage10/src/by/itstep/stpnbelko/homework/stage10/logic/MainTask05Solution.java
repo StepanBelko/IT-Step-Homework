@@ -1,6 +1,7 @@
 package by.itstep.stpnbelko.homework.stage10.logic;
 
 import by.itstep.stpnbelko.homework.stage10.control.MainTask05;
+import by.itstep.stpnbelko.homework.stage10.data.Deposit;
 
 public class MainTask05Solution {
     public static Deposit countDepositPercentage(double deposit, double depositPercentage) {

@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static by.itstep.stpnbelko.homework.stage10.logic.MainTask04Solution.isPalindrome;
 import static by.itstep.stpnbelko.homework.stage10.logic.MainTask04Solution.isPalindromeCycle;
 
-//Разработайте программу,которая проверяет,что заданное натуральное число
+//Разработайте программу, которая проверяет, что заданное натуральное число
 //читается одинаково слева направо и справа налево (т.е. является палиндромом).
 //К примеру, числа 1235321, 112211, 7 и 1221 – удовлетворяют условию, а числа 12345321, 1000 и 12 – нет.
 public class MainTask04 {

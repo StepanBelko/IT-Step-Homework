@@ -1,6 +1,6 @@
 package by.itstep.stpnbelko.homework.stage10.control;
 
-import by.itstep.stpnbelko.homework.stage10.logic.Deposit;
+import by.itstep.stpnbelko.homework.stage10.data.Deposit;
 
 import static by.itstep.stpnbelko.homework.stage10.logic.MainTask05Solution.countDepositPercentage;
 
