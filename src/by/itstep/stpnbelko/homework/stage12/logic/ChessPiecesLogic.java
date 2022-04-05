@@ -31,4 +31,12 @@ public class ChessPiecesLogic {
                 checkElephantStep(x1, y1, x2, y2);
     }
 
+    public static boolean checkHorseStep(int x1, int y1, int x2, int y2) {
+        if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
+        int dx = Math.abs(x1 - x2);
+        int dy = Math.abs(y1 - y2); 
+        return (dx == 1 && dy == 2) ||
+                (dx == 2 && dy == 1);
+    }
+
 }

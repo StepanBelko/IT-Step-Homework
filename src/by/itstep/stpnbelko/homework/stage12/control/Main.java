@@ -33,5 +33,10 @@ public class Main {
         System.out.print("Queen ");
         msg = result ? "YES" : "NO";
         Printer.print(msg);
+
+        result = ChessPiecesLogic.checkHorseStep(x1, y1, x2, y2);
+        System.out.print("Horse ");
+        msg = result ? "YES" : "NO";
+        Printer.print(msg);
     }
 }
