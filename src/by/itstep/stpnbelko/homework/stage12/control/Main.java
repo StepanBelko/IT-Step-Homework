@@ -6,7 +6,7 @@ import by.itstep.stpnbelko.homework.stage12.view.Printer;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         Printer.print("Input 4 numbers");
         int x1 = scanner.nextInt();
