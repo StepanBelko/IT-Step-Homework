@@ -15,9 +15,23 @@ public class Main {
         int y2 = scanner.nextInt();
 
         boolean result = ChessPiecesLogic.checkRockStep(x1, y1, x2, y2);
-
+        System.out.print("Rock ");
         String msg = result ? "YES" : "NO";
+        Printer.print(msg);
 
+        result = ChessPiecesLogic.checkKingStep(x1, y1, x2, y2);
+        System.out.print("King ");
+        msg = result ? "YES" : "NO";
+        Printer.print(msg);
+
+        result = ChessPiecesLogic.checkElephantStep(x1, y1, x2, y2);
+        System.out.print("Elephant ");
+        msg = result ? "YES" : "NO";
+        Printer.print(msg);
+
+        result = ChessPiecesLogic.checkQueenStep(x1, y1, x2, y2);
+        System.out.print("Queen ");
+        msg = result ? "YES" : "NO";
         Printer.print(msg);
     }
 }

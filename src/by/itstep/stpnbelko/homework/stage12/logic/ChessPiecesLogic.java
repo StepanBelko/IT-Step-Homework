@@ -11,8 +11,24 @@ public class ChessPiecesLogic {
 
     public static boolean checkRockStep(int x1, int y1, int x2, int y2) {
         if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
-
         return (x1 == x2 && y1 != y2) || (x1 != x2 && y1 == y2);
+    }
+
+    public static boolean checkKingStep(int x1, int y1, int x2, int y2) {
+        if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
+        return (Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1) && !((x1 == x2) && (y1 == y2));
+    }
+
+    public static boolean checkElephantStep(int x1, int y1, int x2, int y2) {
+        if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
+        return (x1 - y1) == (x2 - y2) || (x1 + y1) == (x2 + y2);
+    }
+
+    public static boolean checkQueenStep(int x1, int y1, int x2, int y2) {
+        if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
+        return checkRockStep(x1, y1, x2, y2) ||
+                checkKingStep(x1, y1, x2, y2) ||
+                checkElephantStep(x1, y1, x2, y2);
     }
 
 }
