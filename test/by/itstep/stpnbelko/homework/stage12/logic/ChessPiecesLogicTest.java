@@ -197,5 +197,200 @@ public class ChessPiecesLogicTest {
         checkKingStep(2, 1, 2, -2);
     }
 
+
+    //    checkElephantStep() Tests
+    @Test
+    public void testCheckElephantStepReturnTrue() {
+        int x1 = 6;
+        int y1 = 4;
+
+        int[][] points = {{8, 2}, {7, 3}, {5, 5}, {4, 6}, {3, 7},
+                {2, 8}, {3, 1}, {4, 2}, {5, 3}, {7, 5}, {8, 6}};
+
+        for (int[] point : points) {
+            int x2 = point[0];
+            int y2 = point[1];
+            String error = String.format("Error with chess cell: (%d, %d)\n", x2, y2);
+            assertTrue(error, checkElephantStep(x1, y1, x2, y2));
+
+        }
+    }
+
+    @Test
+    public void testCheckElephantStepReturnFalse() {
+        int x1 = 6;
+        int y1 = 4;
+
+        int[][] points = {{6, 4}, {5, 4}, {7, 4}, {6, 3}, {6, 5}, {2, 4}, {3, 8}};
+
+        for (int[] point : points) {
+            int x2 = point[0];
+            int y2 = point[1];
+            String error = String.format("Error with chess cell: (%d, %d)\n", x2, y2);
+            assertFalse(error, checkElephantStep(x1, y1, x2, y2));
+
+        }
+    }
+
+    //invalid values tests
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepZeroX1() {
+        checkElephantStep(0, 2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepZeroX1andY1() {
+        checkElephantStep(0, 0, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepZeroY1() {
+        checkElephantStep(2, 0, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepNegativeX1() {
+        checkElephantStep(-1, 2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepNegativeX1andY1() {
+        checkElephantStep(-1, -2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepNegativeY1() {
+        checkElephantStep(2, -1, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepZeroX2() {
+        checkElephantStep(3, 2, 0, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepZeroX2andY2() {
+        checkElephantStep(2, 2, 0, 0);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepZeroY2() {
+        checkElephantStep(2, 4, 2, 0);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepNegativeX2() {
+        checkElephantStep(1, 2, 2, -2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepNegativeX2andY2() {
+        checkElephantStep(1, 2, -2, -2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckElephantStepNegativeY2() {
+        checkElephantStep(2, 1, 2, -2);
+    }
+
+
+    //    checkQueenStep() Tests
+    @Test
+    public void testCheckQueenStepReturnTrue() {
+        int x1 = 6;
+        int y1 = 4;
+
+        int[][] points = {{8, 2}, {7, 3}, {5, 5}, {4, 6}, {3, 7},
+                {2, 8}, {3, 1}, {4, 2}, {5, 3}, {7, 5}, {8, 6},
+                {5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {7, 4},
+                {8, 4}, {6, 3}, {6, 2}, {6, 1}, {6, 5}, {6, 6},
+                {6, 7}, {6, 8}};
+
+        for (int[] point : points) {
+            int x2 = point[0];
+            int y2 = point[1];
+            String error = String.format("Error with chess cell: (%d, %d)\n", x2, y2);
+            assertTrue(error, checkQueenStep(x1, y1, x2, y2));
+
+        }
+    }
+
+    @Test
+    public void testCheckQueenStepReturnFalse() {
+        int x1 = 6;
+        int y1 = 4;
+
+        int[][] points = {{6, 4}, {5, 2}, {2, 6}, {1, 1}, {8, 8}, {4, 5}, {5, 7}, {8, 3}};
+
+        for (int[] point : points) {
+            int x2 = point[0];
+            int y2 = point[1];
+            String error = String.format("Error with chess cell: (%d, %d)\n", x2, y2);
+            assertFalse(error, checkQueenStep(x1, y1, x2, y2));
+
+        }
+    }
+
+    //invalid values tests
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepZeroX1() {
+        checkQueenStep(0, 2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepZeroX1andY1() {
+        checkQueenStep(0, 0, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepZeroY1() {
+        checkQueenStep(2, 0, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepNegativeX1() {
+        checkQueenStep(-1, 2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepNegativeX1andY1() {
+        checkQueenStep(-1, -2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepNegativeY1() {
+        checkQueenStep(2, -1, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepZeroX2() {
+        checkQueenStep(3, 2, 0, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepZeroX2andY2() {
+        checkQueenStep(2, 2, 0, 0);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepZeroY2() {
+        checkQueenStep(2, 4, 2, 0);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepNegativeX2() {
+        checkQueenStep(1, 2, 2, -2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepNegativeX2andY2() {
+        checkQueenStep(1, 2, -2, -2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckQueenStepNegativeY2() {
+        checkQueenStep(2, 1, 2, -2);
+    }
+
 }
 
