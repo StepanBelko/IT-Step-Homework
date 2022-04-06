@@ -11,12 +11,17 @@ public class ChessPiecesLogic {
 
     public static boolean checkRockStep(int x1, int y1, int x2, int y2) {
         if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
+
         return (x1 == x2 && y1 != y2) || (x1 != x2 && y1 == y2);
     }
 
     public static boolean checkKingStep(int x1, int y1, int x2, int y2) {
         if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
-        return (Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1) && !((x1 == x2) && (y1 == y2));
+
+        int dx = x1 - x2 > 0 ? x1 - x2 : x2 - x1; // или здесь лучше использовать Math.abs(x1 - x2)?
+        int dy = y1 - y2 > 0 ? y1 - y2 : y2 - y1;
+
+        return (dx <= 1 && dy <= 1) && !((x1 == x2) && (y1 == y2));
     }
 
     public static boolean checkElephantStep(int x1, int y1, int x2, int y2) {
@@ -33,10 +38,11 @@ public class ChessPiecesLogic {
 
     public static boolean checkHorseStep(int x1, int y1, int x2, int y2) {
         if (isInvalidValue(x1, y1, x2, y2)) throw new RuntimeException();
-        int dx = Math.abs(x1 - x2);
-        int dy = Math.abs(y1 - y2); 
-        return (dx == 1 && dy == 2) ||
-                (dx == 2 && dy == 1);
+
+        int dx = x1 - x2 > 0 ? x1 - x2 : x2 - x1; // Та же история. Может Math.abs()?
+        int dy = y1 - y2 > 0 ? y1 - y2 : y2 - y1;
+
+        return (dx == 1 && dy == 2) || (dx == 2 && dy == 1);
     }
 
 }
