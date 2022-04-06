@@ -392,5 +392,101 @@ public class ChessPiecesLogicTest {
         checkQueenStep(2, 1, 2, -2);
     }
 
+
+    //    checkHorseStep() Tests
+    @Test
+    public void testCheckHorseStepReturnTrue() {
+        int x1 = 3;
+        int y1 = 6;
+
+        int[][] points = {{1, 5}, {2, 4}, {4, 4}, {5, 5},
+                {5, 7}, {4, 8}, {2, 8}, {1, 7}};
+
+        for (int[] point : points) {
+            int x2 = point[0];
+            int y2 = point[1];
+            String error = String.format("Error with chess cell: (%d, %d)\n", x2, y2);
+            assertTrue(error, checkHorseStep(x1, y1, x2, y2));
+
+        }
+    }
+
+    @Test
+    public void testCheckHorseStepReturnFalse() {
+        int x1 = 3;
+        int y1 = 6;
+
+        int[][] points = {{3, 6}, {5, 3}, {7, 5}, {8, 6}, {5, 4}, {7, 4}, {6, 3}, {7, 5}};
+
+        for (int[] point : points) {
+            int x2 = point[0];
+            int y2 = point[1];
+            String error = String.format("Error with chess cell: (%d, %d)\n", x2, y2);
+            assertFalse(error, checkHorseStep(x1, y1, x2, y2));
+
+        }
+    }
+
+    //invalid values tests
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepZeroX1() {
+        checkHorseStep(0, 2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepZeroX1andY1() {
+        checkHorseStep(0, 0, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepZeroY1() {
+        checkHorseStep(2, 0, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepNegativeX1() {
+        checkHorseStep(-1, 2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepNegativeX1andY1() {
+        checkHorseStep(-1, -2, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepNegativeY1() {
+        checkHorseStep(2, -1, 2, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepZeroX2() {
+        checkHorseStep(3, 2, 0, 2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepZeroX2andY2() {
+        checkHorseStep(2, 2, 0, 0);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepZeroY2() {
+        checkHorseStep(2, 4, 2, 0);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepNegativeX2() {
+        checkHorseStep(1, 2, 2, -2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepNegativeX2andY2() {
+        checkHorseStep(1, 2, -2, -2);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCheckHorseStepNegativeY2() {
+        checkHorseStep(2, 1, 2, -2);
+    }
+
 }
 
