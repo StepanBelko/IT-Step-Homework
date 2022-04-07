@@ -3,14 +3,20 @@ package by.itstep.stpnbelko.homework.stage12.logic;
 import org.junit.Test;
 
 import static by.itstep.stpnbelko.homework.stage12.logic.ChessPiecesLogic.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ChessPiecesLogicTest {
+    private final int[][] EXCEPTION_POINTS = {
+            {0, 2, 2, 2}, {2, 0, 2, 2}, {0, 0, 2, 4},
+            {2, 2, 0, 2}, {2, 2, 2, 0}, {2, 2, 0, 0},
+            {-1, 1, 2, 2}, {1, -1, 2, 2}, {-1, -1, 2, 2},
+            {2, 2, -1, 1}, {2, 2, 1, -1}, {2, 2, -1, -1}
+    };
+
 
     //    checkRockStep() Tests
     @Test
-    public void testCheckRockStepReturnTrue() {
+    public void testCheckRockStepReturnTrue() throws WrongCoordinateException {
         int x1 = 4;
         int y1 = 4;
 
@@ -26,7 +32,7 @@ public class ChessPiecesLogicTest {
     }
 
     @Test
-    public void testCheckRockStepReturnFalse() {
+    public void testCheckRockStepReturnFalse() throws WrongCoordinateException {
         int x1 = 4;
         int y1 = 4;
 
@@ -40,89 +46,39 @@ public class ChessPiecesLogicTest {
 
         }
     }
+
     /*
-    Здесь и далее есть блок 'invalid values tests' для невалидных значений.
-    Этот блок одинаковый для всех методов.
-    Можно ли как-то сократить эту запись чтобы не копипастить?
-    Или хотя бы все невалидные значения положить в массив (по аналогии с предыдущими тестами)
-    и разом проверить что все значения выбрасывают исключение?
+    Изменил подход к тестированию некорректных данных.
+    Теперь если хоть один набор x1,y1,x2,y2 НЕ выбрасывает исключение,
+    то тестовый метод фейлится, иначе - всё в порядке.
+    Получилось сильно короче.
 
-    У меня не получилось так сделать потому что при таком подходе
-    если хотя бы одно значение из массива выбрасывает исключение,
-    то считается что весь тестовый метод выбросил исключение и тест пройден.
-
-    Главный вопрос: как сделать так, чтобы можно было отследить что КАЖДОЕ значение
-    выбросило исключение?
-
-    Либо мой подход к проверке невалидных значений в корне неверен и нужно не
-    выбрасывать исключения, а просто выдавать false?
+    Массив с некорректными точками инициализировал в поле тестового класса,
+    он будет один для всех методов.
     */
 
     //invalid values tests
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepZeroX1() {
-        checkRockStep(0, 2, 2, 2);
-    }
+    @Test
+    public void invalidPointRockStepTest() {
 
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepZeroX1andY1() {
-        checkRockStep(0, 0, 2, 2);
+        for (int[] point : EXCEPTION_POINTS) {
+            int x1 = point[0];
+            int y1 = point[1];
+            int x2 = point[2];
+            int y2 = point[3];
+            try {
+                checkRockStep(x1, y1, x2, y2);
+                System.out.printf("%d.%d %d.%d - must be exception\n", x1, y1, x2, y2);
+                fail();
+            } catch (WrongCoordinateException e) {
+                e.printStackTrace();
+            }
+        }
     }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepZeroY1() {
-        checkRockStep(2, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepNegativeX1() {
-        checkRockStep(-1, 2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepNegativeX1andY1() {
-        checkRockStep(-1, -2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepNegativeY1() {
-        checkRockStep(2, -1, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepZeroX2() {
-        checkRockStep(3, 2, 0, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepZeroX2andY2() {
-        checkRockStep(2, 2, 0, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepZeroY2() {
-        checkRockStep(2, 4, 2, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepNegativeX2() {
-        checkRockStep(1, 2, 2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepNegativeX2andY2() {
-        checkRockStep(1, 2, -2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckRockStepNegativeY2() {
-        checkRockStep(2, 1, 2, -2);
-    }
-
 
     //    checkKingStep() Tests
     @Test
-    public void testCheckKingStepReturnTrue() {
+    public void testCheckKingStepReturnTrue() throws WrongCoordinateException {
         int x1 = 5;
         int y1 = 3;
 
@@ -138,7 +94,7 @@ public class ChessPiecesLogicTest {
     }
 
     @Test
-    public void testCheckKingStepReturnFalse() {
+    public void testCheckKingStepReturnFalse() throws WrongCoordinateException {
         int x1 = 5;
         int y1 = 3;
 
@@ -154,70 +110,28 @@ public class ChessPiecesLogicTest {
     }
 
     //invalid values tests
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepZeroX1() {
-        checkKingStep(0, 2, 2, 2);
-    }
+    @Test
+    public void invalidPointKingStepTest() {
 
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepZeroX1andY1() {
-        checkKingStep(0, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepZeroY1() {
-        checkKingStep(2, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepNegativeX1() {
-        checkKingStep(-1, 2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepNegativeX1andY1() {
-        checkKingStep(-1, -2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepNegativeY1() {
-        checkKingStep(2, -1, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepZeroX2() {
-        checkKingStep(3, 2, 0, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepZeroX2andY2() {
-        checkKingStep(2, 2, 0, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepZeroY2() {
-        checkKingStep(2, 4, 2, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepNegativeX2() {
-        checkKingStep(1, 2, 2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepNegativeX2andY2() {
-        checkKingStep(1, 2, -2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckKingStepNegativeY2() {
-        checkKingStep(2, 1, 2, -2);
+        for (int[] point : EXCEPTION_POINTS) {
+            int x1 = point[0];
+            int y1 = point[1];
+            int x2 = point[2];
+            int y2 = point[3];
+            try {
+                checkKingStep(x1, y1, x2, y2);
+                System.out.printf("%d.%d %d.%d - must be exception\n", x1, y1, x2, y2);
+                fail();
+            } catch (WrongCoordinateException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
     //    checkElephantStep() Tests
     @Test
-    public void testCheckElephantStepReturnTrue() {
+    public void testCheckElephantStepReturnTrue() throws WrongCoordinateException {
         int x1 = 6;
         int y1 = 4;
 
@@ -234,7 +148,7 @@ public class ChessPiecesLogicTest {
     }
 
     @Test
-    public void testCheckElephantStepReturnFalse() {
+    public void testCheckElephantStepReturnFalse() throws WrongCoordinateException {
         int x1 = 6;
         int y1 = 4;
 
@@ -250,70 +164,28 @@ public class ChessPiecesLogicTest {
     }
 
     //invalid values tests
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepZeroX1() {
-        checkElephantStep(0, 2, 2, 2);
-    }
+    @Test
+    public void invalidPointElephantStepTest() {
 
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepZeroX1andY1() {
-        checkElephantStep(0, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepZeroY1() {
-        checkElephantStep(2, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepNegativeX1() {
-        checkElephantStep(-1, 2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepNegativeX1andY1() {
-        checkElephantStep(-1, -2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepNegativeY1() {
-        checkElephantStep(2, -1, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepZeroX2() {
-        checkElephantStep(3, 2, 0, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepZeroX2andY2() {
-        checkElephantStep(2, 2, 0, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepZeroY2() {
-        checkElephantStep(2, 4, 2, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepNegativeX2() {
-        checkElephantStep(1, 2, 2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepNegativeX2andY2() {
-        checkElephantStep(1, 2, -2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckElephantStepNegativeY2() {
-        checkElephantStep(2, 1, 2, -2);
+        for (int[] point : EXCEPTION_POINTS) {
+            int x1 = point[0];
+            int y1 = point[1];
+            int x2 = point[2];
+            int y2 = point[3];
+            try {
+                checkElephantStep(x1, y1, x2, y2);
+                System.out.printf("%d.%d %d.%d - must be exception\n", x1, y1, x2, y2);
+                fail();
+            } catch (WrongCoordinateException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
     //    checkQueenStep() Tests
     @Test
-    public void testCheckQueenStepReturnTrue() {
+    public void testCheckQueenStepReturnTrue() throws WrongCoordinateException {
         int x1 = 6;
         int y1 = 4;
 
@@ -333,7 +205,7 @@ public class ChessPiecesLogicTest {
     }
 
     @Test
-    public void testCheckQueenStepReturnFalse() {
+    public void testCheckQueenStepReturnFalse() throws WrongCoordinateException {
         int x1 = 6;
         int y1 = 4;
 
@@ -349,70 +221,28 @@ public class ChessPiecesLogicTest {
     }
 
     //invalid values tests
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepZeroX1() {
-        checkQueenStep(0, 2, 2, 2);
-    }
+    @Test
+    public void invalidPointQueenStepTest() {
 
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepZeroX1andY1() {
-        checkQueenStep(0, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepZeroY1() {
-        checkQueenStep(2, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepNegativeX1() {
-        checkQueenStep(-1, 2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepNegativeX1andY1() {
-        checkQueenStep(-1, -2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepNegativeY1() {
-        checkQueenStep(2, -1, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepZeroX2() {
-        checkQueenStep(3, 2, 0, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepZeroX2andY2() {
-        checkQueenStep(2, 2, 0, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepZeroY2() {
-        checkQueenStep(2, 4, 2, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepNegativeX2() {
-        checkQueenStep(1, 2, 2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepNegativeX2andY2() {
-        checkQueenStep(1, 2, -2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckQueenStepNegativeY2() {
-        checkQueenStep(2, 1, 2, -2);
+        for (int[] point : EXCEPTION_POINTS) {
+            int x1 = point[0];
+            int y1 = point[1];
+            int x2 = point[2];
+            int y2 = point[3];
+            try {
+                checkQueenStep(x1, y1, x2, y2);
+                System.out.printf("%d.%d %d.%d - must be exception\n", x1, y1, x2, y2);
+                fail();
+            } catch (WrongCoordinateException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
     //    checkHorseStep() Tests
     @Test
-    public void testCheckHorseStepReturnTrue() {
+    public void testCheckHorseStepReturnTrue() throws WrongCoordinateException {
         int x1 = 3;
         int y1 = 6;
 
@@ -429,7 +259,7 @@ public class ChessPiecesLogicTest {
     }
 
     @Test
-    public void testCheckHorseStepReturnFalse() {
+    public void testCheckHorseStepReturnFalse() throws WrongCoordinateException {
         int x1 = 3;
         int y1 = 6;
 
@@ -445,65 +275,22 @@ public class ChessPiecesLogicTest {
     }
 
     //invalid values tests
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepZeroX1() {
-        checkHorseStep(0, 2, 2, 2);
-    }
+    @Test
+    public void invalidPointHorseStepTest() {
 
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepZeroX1andY1() {
-        checkHorseStep(0, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepZeroY1() {
-        checkHorseStep(2, 0, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepNegativeX1() {
-        checkHorseStep(-1, 2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepNegativeX1andY1() {
-        checkHorseStep(-1, -2, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepNegativeY1() {
-        checkHorseStep(2, -1, 2, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepZeroX2() {
-        checkHorseStep(3, 2, 0, 2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepZeroX2andY2() {
-        checkHorseStep(2, 2, 0, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepZeroY2() {
-        checkHorseStep(2, 4, 2, 0);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepNegativeX2() {
-        checkHorseStep(1, 2, 2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepNegativeX2andY2() {
-        checkHorseStep(1, 2, -2, -2);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testCheckHorseStepNegativeY2() {
-        checkHorseStep(2, 1, 2, -2);
+        for (int[] point : EXCEPTION_POINTS) {
+            int x1 = point[0];
+            int y1 = point[1];
+            int x2 = point[2];
+            int y2 = point[3];
+            try {
+                checkHorseStep(x1, y1, x2, y2);
+                System.out.printf("%d.%d %d.%d - must be exception\n", x1, y1, x2, y2);
+                fail();
+            } catch (WrongCoordinateException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
-
