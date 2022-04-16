@@ -11,41 +11,45 @@ public class MainTask05Logic {
 В каждой строке будет содержаться количество оценок и их процент
 */
 
-    static double[][] markTable = new double[6][2];
-    public static Mark[] markTableObj = {zero, one, two, three, four, five};
+    private static double[][] markTable = new double[6][2];
+    private static Mark[] markTableObj = {zero, one, two, three, four, five};
 
-    public static void createMarkTable(int[] array) {
+    public static double[][] countMarkPercentTableFirstVersion(int[] array) {
+        createMarkTable(array);
+        calculatePercent(array);
+        return markTable;
+    }
+
+    private static void createMarkTable(int[] array) {
         for (int j : array) {
             switch (j) {
-                case 0 -> markTable[0][0]++;
-                case 1 -> markTable[1][0]++;
-                case 2 -> markTable[2][0]++;
-                case 3 -> markTable[3][0]++;
-                case 4 -> markTable[4][0]++;
-                case 5 -> markTable[5][0]++;
+                case 0 -> markTable[0][1]++;
+                case 1 -> markTable[1][1]++;
+                case 2 -> markTable[2][1]++;
+                case 3 -> markTable[3][1]++;
+                case 4 -> markTable[4][1]++;
+                case 5 -> markTable[5][1]++;
                 default -> throw new IllegalStateException("Unexpected value: " + j);
             }
         }
-//        for (int i = 0; i < markTable.length; i++) {
-//            for (int j = 0; j < markTable[i].length; j++) {
-//                System.out.printf("%.0f ", markTable[i][j]);
-//            }
-//            System.out.println();
-//        }
-
-        for (int i = 0; i < markTable.length; i++) {
-            markTable[i][1] = markTable[i][0] / ((double) array.length / 100.0);
-        }
-//
-//        for (int i = 0; i < markTable.length; i++) {
-//            for (int j = 0; j < markTable[i].length; j++) {
-//                System.out.printf("%.1f ", markTable[i][j]);
-//            }
-//            System.out.println();
-//        }
     }
 
-//    Всё-таки вариант с объектами мне кажется лучше:
+    private static void calculatePercent(int[] array) {
+        for (int i = 0; i < MainTask05Logic.markTable.length; i++) {
+            MainTask05Logic.markTable[i][0] = MainTask05Logic.markTable[i][1] / ((double) array.length / 100.0);
+        }
+    }
+
+    //    Всё-таки вариант с объектами мне кажется лучше:
+    public static void countMarkPercentObjectVersion(int[] array) {
+        fillInTheMArkTable(array);
+        for (Mark mark : markTableObj) {
+            double onePercent = ((double) array.length / 100);
+            double percentCount = mark.getNumber() / onePercent;
+            mark.setPercent(percentCount);
+        }
+    }
+
     private static void fillInTheMArkTable(int[] array) {
         for (int j : array) {
             switch (j) {
@@ -60,12 +64,7 @@ public class MainTask05Logic {
         }
     }
 
-    public static void countMarkPercent(int[] array) {
-        fillInTheMArkTable(array);
-        for (Mark mark : markTableObj) {
-            double onePercent = ((double) array.length / 100);
-            double percentCount = mark.getNumber() / onePercent;
-            mark.setPercent(percentCount);
-        }
+    public static Mark[] getMarkTableObj() {
+        return markTableObj;
     }
 }

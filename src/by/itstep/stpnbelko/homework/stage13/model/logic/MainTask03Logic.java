@@ -1,7 +1,7 @@
 package by.itstep.stpnbelko.homework.stage13.model.logic;
 
 public class MainTask03Logic {
-    
+
     public static boolean isAllElementsDifferent(int[] array) {
         if (array == null || array.length == 0 || array.length == 1) {
             return false;
@@ -17,7 +17,7 @@ public class MainTask03Logic {
     }
 
     public static boolean isAllElementsSame(int[] array) {
-        if (array == null || array.length == 0 || array.length == 1) {
+        if (array == null || array.length == 0) {
             return false;
         }
         for (int i = 0; i < array.length - 1; i++) {

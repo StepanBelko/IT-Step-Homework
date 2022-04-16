@@ -1,10 +1,12 @@
 package by.itstep.stpnbelko.homework.stage13.control;
+
 import by.itstep.stpnbelko.homework.stage13.model.util.Array;
-import static by.itstep.stpnbelko.homework.stage13.model.logic.GeneralTaskLogic.*;
-import static by.itstep.stpnbelko.homework.stage13.view.Printer.print;
 
 import java.util.Arrays;
 import java.util.Scanner;
+
+import static by.itstep.stpnbelko.homework.stage13.model.logic.GeneralTaskLogic.*;
+import static by.itstep.stpnbelko.homework.stage13.view.Printer.print;
 
 public class GeneralTask {
     /*
@@ -23,6 +25,7 @@ public class GeneralTask {
     которые стоят на чётных местах.
     */
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         print("Enter number of elements in array");

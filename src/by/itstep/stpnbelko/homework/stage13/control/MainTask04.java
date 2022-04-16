@@ -3,11 +3,12 @@ package by.itstep.stpnbelko.homework.stage13.control;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static by.itstep.stpnbelko.homework.stage13.model.logic.MainTask04Logic.countEvenElements;
+import static by.itstep.stpnbelko.homework.stage13.model.logic.MainTask04Logic.countOddElements;
 import static by.itstep.stpnbelko.homework.stage13.view.Printer.print;
-import static by.itstep.stpnbelko.homework.stage13.model.logic.MainTask04Logic.*;
 
 public class MainTask04 {
-//    Написать программу, которая подсчитывает количество
+    //    Написать программу, которая подсчитывает количество
 //    только чётных/нечётных элементов вектора.
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

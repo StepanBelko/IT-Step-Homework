@@ -8,7 +8,7 @@ public class MainTask04Logic {
         }
         int count = 0;
         for (int j : array) {
-            if (j % 2 == 0) {
+            if (j % 2 == 0 && j != 0) {
                 count++;
             }
         }

@@ -2,7 +2,7 @@ package by.itstep.stpnbelko.homework.stage13.model.logic;
 
 public class MainTask01Logic {
     public static boolean isAscendingCondition(int[] array) {
-        if (array == null || array.length == 0 || array.length == 1) {
+        if (array == null || array.length == 0) {
             return false;
         }
         for (int i = 0; i < array.length - 1; i++) {
@@ -14,7 +14,7 @@ public class MainTask01Logic {
     }
 
     public static boolean isDescendingCondition(int[] array) {
-        if (array == null || array.length == 0 || array.length == 1) {
+        if (array == null || array.length == 0) {
             return false;
         }
         for (int i = 0; i < array.length - 1; i++) {

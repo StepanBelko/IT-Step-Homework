@@ -3,9 +3,9 @@ package by.itstep.stpnbelko.homework.stage13.control;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static by.itstep.stpnbelko.homework.stage13.model.logic.MainTask05Logic.countMarkPercent;
-import static by.itstep.stpnbelko.homework.stage13.model.logic.MainTask05Logic.markTableObj;
+import static by.itstep.stpnbelko.homework.stage13.model.logic.MainTask05Logic.*;
 import static by.itstep.stpnbelko.homework.stage13.view.Printer.print;
+import static by.itstep.stpnbelko.homework.stage13.view.Printer.printMarkTable;
 
 public class MainTask05 {
     /*
@@ -33,15 +33,21 @@ public class MainTask05 {
 //        и обработать возможные NumberFormatException,
 //        но мы ведь надеемся на адекватных пользователей)))
         print("Enter exam results separated by spaces");
-        String stringArray = "5 4 4 5 3 4 3 4 5 3 4 4 3 4 4 3 5 3 3 4 5 5 5 5 4 5 5 5 2 5";
+        String stringArray = scanner.nextLine();
         int[] array = Arrays.stream(stringArray.split(" ")).mapToInt(Integer::parseInt).toArray();
-//        print(Arrays.toString(array));
-//        createMarkTable(array);
-        countMarkPercent(array);
-        for (var element : markTableObj) {
+
+//        первый вариант:
+        double[][] markTable = countMarkPercentTableFirstVersion(array);
+        printMarkTable(markTable, array);
+
+//        мой вариант
+//        но как его тестировать я конечно не знаю)
+        countMarkPercentObjectVersion(array);
+
+        for (var element : getMarkTableObj()) {
             stringBuilder.append(element.toString());
         }
-        print("Exam Result Handling\n" + "Marks:\n" + Arrays.toString(array) + "\n" + stringBuilder);
-
+        print("Object version:\nExam Result Handling\n" +
+                "Marks:\n" + Arrays.toString(array) + "\n" + stringBuilder);
     }
 }
