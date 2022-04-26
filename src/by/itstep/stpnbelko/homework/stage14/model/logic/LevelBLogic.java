@@ -1,7 +1,7 @@
 package by.itstep.stpnbelko.homework.stage14.model.logic;
 
 public class LevelBLogic {
-    public static int findItemsMoreThanN(int[] array, int N) {
+    public static int countItemsMoreThanN(int[] array, int N) {
         if (array == null || array.length == 0) {
             return -1;
         }
@@ -14,7 +14,7 @@ public class LevelBLogic {
         return count;
     }
 
-    public static int findElementAbsMoreThanN(int[] array, int N) {
+    public static int countElementAbsMoreThanN(int[] array, int N) {
         if (array == null || array.length == 0) {
             return -1;
         }

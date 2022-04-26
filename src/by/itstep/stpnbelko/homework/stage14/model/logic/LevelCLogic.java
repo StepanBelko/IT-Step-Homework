@@ -1,7 +1,7 @@
 package by.itstep.stpnbelko.homework.stage14.model.logic;
 
 public class LevelCLogic {
-    public static int findElementMoreArithmeticMean(int[] array) {
+    public static int countElementMoreArithmeticMean(int[] array) {
         if (array == null || array.length == 0) {
             return -1;
         }

@@ -1,7 +1,7 @@
 package by.itstep.stpnbelko.homework.stage14.model.logic;
 
 public class LevelALogic {
-    public static int findNotZero(int[] array) {
+    public static int countNonZeroElements(int[] array) {
         if (array == null || array.length == 0) {
             return -1;
         }

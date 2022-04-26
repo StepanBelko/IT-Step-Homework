@@ -2,8 +2,8 @@ package by.itstep.stpnbelko.homework.stage14.control;
 
 import java.util.Scanner;
 
-import static by.itstep.stpnbelko.homework.stage14.model.logic.LevelBLogic.findElementAbsMoreThanN;
-import static by.itstep.stpnbelko.homework.stage14.model.logic.LevelBLogic.findItemsMoreThanN;
+import static by.itstep.stpnbelko.homework.stage14.model.logic.LevelBLogic.countElementAbsMoreThanN;
+import static by.itstep.stpnbelko.homework.stage14.model.logic.LevelBLogic.countItemsMoreThanN;
 import static by.itstep.stpnbelko.homework.stage14.view.Printer.print;
 
 public class LevelB {
@@ -14,13 +14,13 @@ public class LevelB {
         System.out.println("Enter N");
         int N = scanner.nextInt();
 
-        String msg = String.format("How many items more than %d? - %d", N, findItemsMoreThanN(array, N));
+        String msg = String.format("How many items more than %d? - %d", N, countItemsMoreThanN(array, N));
         print(msg);
 
         System.out.println("B7.  Find |element| greater than N");
         System.out.println("Enter N");
         N = scanner.nextInt();
-        msg = String.format("%d abs elements more than %d", findElementAbsMoreThanN(array, N), N);
+        msg = String.format("%d abs elements more than %d", countElementAbsMoreThanN(array, N), N);
         print(msg);
     }
 }
